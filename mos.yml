@@ -1,7 +1,7 @@
 author: mongoose-os
 type: lib
 description: ADC support
-version: 1.0.0
+version: 1.1.0
 
 platforms: [ esp32, esp8266, stm32, esp32c3 ]
 
@@ -19,21 +19,21 @@ conds:
       build_vars:
         ESP_IDF_EXTRA_COMPONENTS: >
           ${build_vars.ESP_IDF_EXTRA_COMPONENTS}
-          esp_adc_cal
+          esp_adc
       config_schema:
         # https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/adc.html#adc-calibration
         - ["sys.esp32_adc_vref", "i", 0, {title: "ADC Vref, in mV"}]
-        - ["sys.esp32_adc_width", "i", 3, {title: "ADC width, see ESP32 IDF"}]
+        - ["sys.esp32_adc_width", "i", 12, {title: "ADC width, see ESP32 IDF"}]
   - when: mos.platform == "esp32c3"
     apply:
       build_vars:
         ESP_IDF_EXTRA_COMPONENTS: >
           ${build_vars.ESP_IDF_EXTRA_COMPONENTS}
-          esp_adc_cal
+          esp_adc
       config_schema:
         # https://esp-idf.readthedocs.io/en/latest/api-reference/peripherals/adc.html#adc-calibration
         - ["sys.esp32_adc_vref", "i", 0, {title: "ADC Vref, in mV"}]
-        - ["sys.esp32_adc_width", "i", 3, {title: "ADC width, see ESP32 IDF"}]
+        - ["sys.esp32_adc_width", "i", 12, {title: "ADC width, see ESP32 IDF"}]
 
 tags:
   - c
