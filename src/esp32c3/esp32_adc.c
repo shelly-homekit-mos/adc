@@ -59,6 +59,12 @@ static struct esp32_adc_channel_info *esp32_adc_get_channel_info(int pin) {
 }
 
 static bool esp32_update_channel_settings(struct esp32_adc_channel_info *ci) {
+  adc_oneshot_unit_init_cfg_t uconfig = {.unit_id = ADC_UNIT_1};
+
+  // TODO: leaking handle, need to call adc_oneshot_del_unit
+  ESP_ERROR_CHECK(adc_oneshot_new_unit(&uconfig, &ci->handle));
+
+
   adc_oneshot_chan_cfg_t config = {
       .bitwidth = s_width,
       .atten = ci->atten,
